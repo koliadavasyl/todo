@@ -1,0 +1,27 @@
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h1>{{ status.title }}</h1>
+{% endblock %}
+
+{% block containerbody %}
+    <div style="display: inline-block;">
+        <h2>Status</h2>
+        <hr align="left" width="200" color="Grey">
+        <a href="#"> {{ status.title }}  </a>
+    </div>
+    <div style=" display: inline-block;">
+        <h2>Descriptions</h2>
+        <hr align="left" width="200" color="Grey">
+        {{ status.descriptStatus }}
+
+    </div>
+    <div style=" display: inline-block;">
+        <hr align="left" width="100" color="Grey">
+        <a href="{{path('status_update', {'id': status.id})}}">Edit</a>
+    </div>
+    <div style=" display: inline-block;">
+        <hr align="left" width="100" color="Grey">
+        <a href="{{path('status_delete', {'id': status.id})}}">Delete</a>
+    </div>
+{% endblock %}

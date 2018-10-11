@@ -63,6 +63,9 @@ class Task
      */
     private $users;
 
+    /**
+     * Task constructor.
+     */
     public function __construct() {
         $this->users = new ArrayCollection();
     }
@@ -172,6 +175,19 @@ class Task
         return $this->date_update;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
-
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
 }

@@ -34,7 +34,7 @@ class Status
      *
      * @ORM\Column(name="descript_status", type="text")
      */
-    private $descript_status;
+    private $descriptionStatus;
 
     /**
      * @ORM\OneToMany(targetEntity="Task", mappedBy="status")
@@ -87,9 +87,9 @@ class Status
      *
      * @return Status
      */
-    public function setDescriptStatus($descript_status)
+    public function setDescriptStatus($descriptionStatus)
     {
-        $this->descriptStatus = $descript_status;
+        $this->descriptionStatus = $descriptionStatus;
 
         return $this;
     }
@@ -101,6 +101,6 @@ class Status
      */
     public function getDescriptStatus()
     {
-        return $this->descript_status;
+        return $this->descriptionStatus;
     }
 }

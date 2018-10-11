@@ -1,0 +1,23 @@
+
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h2>Status</h2>
+{% endblock %}
+
+{% block containerbody %}
+            <div style="display: inline-block;">
+                <h2>Status</h2>
+                {% for st in status %}
+                    <hr align="left" width="200" color="Grey">
+                    <a href="{{path('status_view', {'id': st.id})}}"> {{ st.title }}  </a>
+                {% endfor %}
+            </div>
+            <div style=" display: inline-block;">
+                <h2>Descriptions</h2>
+                {% for st in status %}
+                    <hr align="left" width="200" color="Grey">
+                    {{ st.descriptStatus }}
+                {% endfor %}
+            </div>
+{% endblock %}

@@ -1,3 +1,25 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+status_list:
+    path:     /status
+    defaults: { _controller: AppBundle:Status:list }
+
+status_view:
+    path:     /status/{id}/view
+    defaults: { _controller: AppBundle:Status:view }
+    requirements:
+        page: '\d+'
+
+status_create:
+    path:     /status/create
+    defaults: { _controller: AppBundle:Status:create }
+
+status_update:
+    path:     /status/{id}/update
+    defaults: { _controller: AppBundle:Status:update }
+    requirements:
+        page: '\d+'
+
+status_delete:
+    path:     /status/{id}
+    defaults: { _controller: AppBundle:Status:delete }
+    requirements:
+        page: '\d+'

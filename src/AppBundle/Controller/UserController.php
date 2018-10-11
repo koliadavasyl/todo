@@ -58,8 +58,5 @@ class UserController extends Controller
 
             return new Response('First Name :  '.$user->getFirstName(). '<br/>Last Name: '.$user->getLastName().'<br/>Email:'.$user->getEmail().'<br/>');
 
-            // или отобразить шаблон
-            // в шаблоне, отобразить всё с {{ product.name }}
-            // вернуть $this->render('product/show.html.twig', ['product' => $product]);
     }
 }

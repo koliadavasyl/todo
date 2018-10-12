@@ -1,0 +1,36 @@
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h1>{{ task.nameTask }}</h1>
+{% endblock %}
+
+{% block containerbody %}
+    <div style="display: inline-block;">
+        <a href="{{ path('app') }}">Home</a>
+        <a href="{{ path('task_create') }}">Create</a>
+        <h2>Task name</h2>
+        <hr align="left" width="200" color="Grey">
+        <a href="#"> {{ task.nameTask }}  </a>
+    </div>
+    <div style=" display: inline-block;">
+        <h2>Descriprion</h2>
+        <hr align="left" width="100" color="Grey">
+        {{ task.description }}
+
+    </div>
+    <div style=" display: inline-block;">
+        <h2>Date create</h2>
+
+            <hr align="left" width="100" color="Grey">
+            {{ task.dateCreate|date("m/d/Y") }}
+
+    </div>
+    <div style=" display: inline-block;">
+        <hr align="left" width="100" color="Grey">
+        <a href="{{ path('task_update', {'id': task.id}) }}">Edit</a>
+    </div>
+    <div style=" display: inline-block;">
+        <hr align="left" width="100" color="Grey">
+        <a href="{{ path('task_delete', {'id': task.id}) }}">Delete</a>
+    </div>
+{% endblock %}

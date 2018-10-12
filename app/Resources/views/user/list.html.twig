@@ -1,0 +1,34 @@
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h2>User</h2>
+{% endblock %}
+
+{% block containerbody %}
+    <div style="display: inline-block;">
+        <a href="{{ path('app') }}">Home</a>
+        <a href="{{ path('user_create') }}">Create</a>
+        <h2>Users</h2>
+
+
+
+    </div>  <br>
+        {% for us in user %}
+
+
+            <a href="{{ path('user_view', {'id': us.id}) }}"> {{ us.id }}  </a>
+
+            <div style=" display: inline-block;">
+               {{ us.firstName }}</div>
+            <div style=" display: inline-block;">
+               {{ us.lastName }}</div>
+
+            <div style=" display: inline-block;">{{ us.dateBirth |date("m/d/Y") }}</div>
+
+            {% for task in us.task %}
+                <p>Task: <a href="{{ path('task_view', {'id': us.id})  }}">{{ task.nameTask }}</a></p>
+            {% endfor %}<br>
+
+        {% endfor %}
+
+{% endblock %}

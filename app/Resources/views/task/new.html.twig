@@ -1,0 +1,21 @@
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h1>Create/edit task</h1>
+{% endblock %}
+{% block containerbody %}
+    <hr align="left" width="400" color="Green">
+    <a href="{{ path('app') }}">Home</a>
+    <a href="{{ path('task_create') }}">Create</a>
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div style="margin-left: 100px;">
+        <div>{{ form_row(form.nameTask)}}<br></div>
+        <div>{{ form_row(form.description)}}<br></div>
+        <div>{{ form_row(form.date_create)}}<br></div>
+        <div>{{ form_row(form.date_update)}}<br></div>
+
+        {{ form_row(form.save)}}
+    </div>
+    {{ form_end(form) }}
+    <hr align="left" width="400" color="Green">
+{% endblock %}

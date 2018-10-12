@@ -7,6 +7,8 @@
 
 {% block containerbody %}
             <div style="display: inline-block;">
+                <a href="{{ path('app') }}">Home</a>
+                <a href="{{ path('status_create') }}">Create</a>
                 <h2>Status</h2>
                 {% for st in status %}
                     <hr align="left" width="200" color="Grey">

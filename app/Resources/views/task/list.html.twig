@@ -1,0 +1,32 @@
+
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h2>Status</h2>
+{% endblock %}
+
+{% block containerbody %}
+    <div style="display: inline-block;">
+        <a href="{{ path('app') }}">Home</a>
+        <a href="{{ path('task_create') }}">Create</a>
+        <h2>Tasks</h2>
+        {% for t in task %}
+            <hr align="left" width="200" color="Grey">
+            <a href="{{path('task_view', {'id': t.id})}}"> {{ t.nameTask }}  </a>
+        {% endfor %}
+    </div>
+    <div style=" display: inline-block;">
+        <h2>Description</h2>
+        {% for t in task %}
+            <hr align="left" width="200" color="Grey">
+            {{ t.description }}
+        {% endfor %}
+    </div>
+    <div style=" display: inline-block;">
+        <h2>Date create</h2>
+        {% for t in task %}
+            <hr align="left" width="200" color="Grey">
+            {{ t.dateCreate|date("m/d/Y") }}
+        {% endfor %}
+    </div>
+{% endblock %}

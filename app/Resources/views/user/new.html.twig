@@ -1,0 +1,29 @@
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h1>Create/edit user</h1>
+{% endblock %}
+{% block containerbody %}
+    <hr align="left" width="400" color="Green">
+    <a href="{{ path('app') }}">Home</a>
+    <a href="{{ path('user_create') }}">Create</a>
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div style="margin-left: 100px;">
+
+
+        {{ form_label(form.first_name) }}
+        {{ form_errors(form.first_name) }}
+        {{ form_widget(form.first_name) }}
+
+        <div>{{ form_row(form.last_name)}}<br></div>
+        <div>{{ form_row(form.email)}}<br></div>
+        <div>{{ form_row(form.date_birth)}}<br></div>
+        <div>{{ form_row(form.date_create)}}<br></div>
+        <div>{{ form_row(form.date_update)}}<br></div>
+        <div>{{ form_row(form.task)}}<br></div>
+                {{ form_row(form.save)}}
+        {{ form_end(form) }}
+    </div>
+
+    <hr align="left" width="400" color="Green">
+{% endblock %}

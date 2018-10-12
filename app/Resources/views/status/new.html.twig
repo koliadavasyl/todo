@@ -1,5 +1,12 @@
-<hr align="left" width="400" color="Green">
+{% extends 'template.html.twig' %}
 
+{% block welcometitle %}
+    <h1>Create/edit task</h1>
+{% endblock %}
+{% block containerbody %}
+<hr align="left" width="400" color="Green">
+    <a href="{{ path('app') }}">Home</a>
+    <a href="{{ path('status_create') }}">Create</a>
 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     <div style="margin-left: 100px;">
 
@@ -15,3 +22,4 @@
 {{ form_end(form) }}
 
 <hr align="left" width="400" color="Green">
+{% endblock %}

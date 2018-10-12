@@ -7,7 +7,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use AppBundle\Entity\Users;
 
 use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
+
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,7 +23,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 // ...
 // ...
-class UserController extends Controller
+class TaskController extends Controller
 {
     /**
      * @param Request $request
@@ -29,27 +31,16 @@ class UserController extends Controller
      */
     public function createAction(Request $request)
     {
-        $user = new Users();
-
+        $task = new Task();
         //$form = $this->getUserForm($user);
-
-        $form = $this->createFormBuilder($user)
-            ->add(
-                'first_name',
-                TextType::class,
-                [
-                    'required' => true
-                ]
-            )->add(
-                'last_name',
-                TextType::class
-            )->add('email', EmailType::class)
-            ->add('date_birth', DateType::class)
+        $form = $this->createFormBuilder($task)
+            ->add('nameTask', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('date_create', DateType::class)
             ->add('date_update', DateType::class)
-            ->add('task', EntityType::class, array(
-                    'class' => Task::class,
-                    'choice_label' => 'nameTask',
+            ->add('users', EntityType::class, array(
+                    'class' => Users::class,
+                    'choice_label' => 'first_name',
                     'multiple' => true,
                     'expanded' => true,
                 )
@@ -58,18 +49,15 @@ class UserController extends Controller
             ->getForm();
 
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid() && $form != NULL) {
-
-            $user = $form->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $em->persist($task);
             $em->flush();
-
-            return $this->redirectToRoute('user_list');
+            return $this->redirectToRoute('task_list');
 
         }
-
-        return $this->render('user/new.html.twig', array(
+        return $this->render('task/new.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -81,23 +69,22 @@ class UserController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $user = $this->getDoctrine()
-            ->getRepository(Users::class)
+        $task = $this->getDoctrine()
+            ->getRepository(Task::class)
             ->find($id);
 
-        $form = $this->getUserForm($user);
+        $form = $this->getTaskForm($task);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
+            $task = $form->getData();
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $em->persist($task);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('user_list'));
+            return $this->redirect($this->generateUrl('task_list'));
         }
-
-        return $this->render('user/new.html.twig', array(
+        return $this->render('task/new.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -109,12 +96,12 @@ class UserController extends Controller
     public function deleteAction($id)
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $user = $entityManager->getRepository(Users::class)->find($id);
+        $task = $entityManager->getRepository(Task::class)->find($id);
 
-        $entityManager->remove($user);
+        $entityManager->remove($task);
         $entityManager->flush();
 
-        return $this->redirect($this->generateUrl('user_list'));
+        return $this->redirect($this->generateUrl('task_list'));
     }
 
     /**
@@ -122,19 +109,18 @@ class UserController extends Controller
      */
     public function listAction()
     {
-        $user = $this->getDoctrine()
-            ->getRepository(Users::class)
-
+        $task = $this->getDoctrine()
+            ->getRepository(Task::class)
             ->findAll();
 
-        if (!$user) {
+        if (!$task) {
             throw $this->createNotFoundException(
-                'No status found'
+                'No task found'
             );
         }
         return $this->render(
-            'user/list.html.twig',
-            array('user' => $user)
+            'task/list.html.twig',
+            array('task' => $task)
         );
     }
 
@@ -144,52 +130,34 @@ class UserController extends Controller
      */
     public function viewAction($id)
     {
-        $user = $this->getDoctrine()
-            ->getRepository(Users::class)
+        $task = $this->getDoctrine()
+            ->getRepository(Task::class)
             ->find($id);
 
-        if (!$user) {
+        if (!$task) {
             throw $this->createNotFoundException(
                 'No product found for id ' . $id
             );
         }
-
         return $this->render(
-            'user/view.html.twig',
-            array('user' => $user)
+            'task/view.html.twig',
+            array('task' => $task)
         );
     }
 
     /**
-     * @param $user
+     * @param $task
      * @return \Symfony\Component\Form\FormInterface
      */
-    private function getUserForm($user)
+    private function getTaskForm($task)
     {
-        $form = $this->createFormBuilder($user)
-            ->add('first_name', TextType::class)
-            ->add('last_name', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('date_birth', DateType::class)
+        $form = $this->createFormBuilder($task)
+            ->add('nameTask', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('date_create', DateType::class)
             ->add('date_update', DateType::class)
-            ->add('task', EntityType::class, array(
-                'class' => Task::class,
-                'choice_label' => 'nameTask',
-                'multiple' => true,
-                'expanded' => true,
-            ))
-            ->add('save', SubmitType::class, array('label' => 'Submit user'))
+            ->add('save', SubmitType::class, array('label' => 'Submit task'))
             ->getForm();
         return $form;
     }
-
-    private function errorAction($form)
-    {
-
-        return $this->render('user/error.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-
 }

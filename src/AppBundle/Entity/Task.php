@@ -27,7 +27,7 @@ class Task
      *
      * @ORM\Column(name="nameTask", type="string", length=255)
      */
-    private $name_task;
+    private $nameTask;
 
     /**
      * @var string
@@ -41,14 +41,14 @@ class Task
      *
      * @ORM\Column(name="date_create", type="datetime")
      */
-    private $date_create;
+    private $dateCreate;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_update", type="datetime")
      */
-    private $date_update;
+    private $dateUpdate;
 
     /**
      * @ORM\ManyToOne(targetEntity="Status", inversedBy="task")
@@ -82,13 +82,13 @@ class Task
     /**
      * Set nameTask.
      *
-     * @param string $name_task
+     * @param string $nameTask
      *
      * @return Task
      */
-    public function setNameTask($name_task)
+    public function setNameTask($nameTask)
     {
-        $this->name_task = $name_task;
+        $this->nameTask = $nameTask;
 
         return $this;
     }
@@ -100,7 +100,7 @@ class Task
      */
     public function getNameTask()
     {
-        return $this->name_task;
+        return $this->nameTask;
     }
 
     /**
@@ -134,9 +134,9 @@ class Task
      *
      * @return Task
      */
-    public function setDateCreate($date_create)
+    public function setDateCreate($dateCreate)
     {
-        $this->date_create = $date_create;
+        $this->dateCreate = $dateCreate;
 
         return $this;
     }
@@ -148,7 +148,7 @@ class Task
      */
     public function getDateCreate()
     {
-        return $this->date_create;
+        return $this->dateCreate;
     }
 
     /**
@@ -158,9 +158,9 @@ class Task
      *
      * @return Task
      */
-    public function setDateUpdate($date_update)
+    public function setDateUpdate($dateUpdate)
     {
-        $this->date_update = $date_update;
+        $this->dateUpdate = $dateUpdate;
 
         return $this;
     }
@@ -172,7 +172,7 @@ class Task
      */
     public function getDateUpdate()
     {
-        return $this->date_update;
+        return $this->dateUpdate;
     }
 
     /**
@@ -189,5 +189,30 @@ class Task
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+
+    /**
+     * Set nameTask.
+     *
+     * @param string $nameTask
+     *
+     * @return Task
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    /**
+     * Get nameTask.
+     *
+     * @return string
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

@@ -35,11 +35,6 @@ class StatusController extends Controller
             $em->persist($status);
             $em->flush();
 
-            /**
-             * Matches /lucky/*
-             *
-             * @Route("/lucky/status", name="blog_show")
-             */
             return $this->redirectToRoute('status_list');
 
         }
@@ -74,7 +69,6 @@ class StatusController extends Controller
         return $this->render('status/new.html.twig', array(
             'form' => $form->createView(),
         ));
-
     }
 
     /**

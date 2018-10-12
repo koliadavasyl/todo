@@ -28,14 +28,14 @@ class Users
      *
      * @ORM\Column(name="first_name", type="string", length=255)
      */
-    private $first_name;
+    private $firstName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
      */
-    private $last_name;
+    private $lastName;
 
     /**
      * @var string
@@ -49,27 +49,28 @@ class Users
      *
      * @ORM\Column(name="date_birth", type="date")
      */
-    private $date_birth;
+    private $dateBirth;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_create", type="datetime")
      */
-    private $date_create;
+    private $dateCreate;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_update", type="datetime")
      */
-    private $date_update;
+    private $dateUpdate;
 
     /**
      * Many Users have Many Tasks.
      * @ORM\ManyToMany(targetEntity="Task", mappedBy="users")
      */
     private $task;
+
     /**
      * Users constructor.
      */
@@ -95,9 +96,9 @@ class Users
      *
      * @return Users
      */
-    public function setFirstName($first_name)
+    public function setFirstName($firstName)
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
@@ -109,7 +110,7 @@ class Users
      */
     public function getFirstName()
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
     /**
@@ -119,9 +120,9 @@ class Users
      *
      * @return Users
      */
-    public function setLastName($last_name)
+    public function setLastName($lastName)
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -133,7 +134,7 @@ class Users
      */
     public function getLastName()
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
     /**
@@ -167,9 +168,9 @@ class Users
      *
      * @return Users
      */
-    public function setDateBirth($date_birth)
+    public function setDateBirth($dateBirth)
     {
-        $this->date_birth = $date_birth;
+        $this->dateBirth = $dateBirth;
 
         return $this;
     }
@@ -181,7 +182,7 @@ class Users
      */
     public function getDateBirth()
     {
-        return $this->date_birth;
+        return $this->dateBirth;
     }
 
     /**
@@ -191,9 +192,9 @@ class Users
      *
      * @return Users
      */
-    public function setDateCreate($date_create)
+    public function setDateCreate($dateCreate)
     {
-        $this->date_create = $date_create;
+        $this->dateCreate = $dateCreate;
 
         return $this;
     }
@@ -205,7 +206,7 @@ class Users
      */
     public function getDateCreate()
     {
-        return $this->date_create;
+        return $this->dateCreate;
     }
 
     /**
@@ -215,9 +216,9 @@ class Users
      *
      * @return Users
      */
-    public function setDateUpdate($date_update)
+    public function setDateUpdate($dateUpdate)
     {
-        $this->date_update = $date_update;
+        $this->dateUpdate = $dateUpdate;
 
         return $this;
     }
@@ -229,6 +230,26 @@ class Users
      */
     public function getDateUpdate()
     {
-        return $this->date_update;
+        return $this->dateUpdate;
     }
+
+    /**
+     * @param $task
+     * @return $this
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTask()
+    {
+        return $this->task;
+    }
+
 }

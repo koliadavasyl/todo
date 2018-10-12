@@ -1,0 +1,11 @@
+{% extends 'template.html.twig' %}
+
+{% block welcometitle %}
+    <h1>Error!</h1>
+{% endblock %}
+
+{% block containerbody %}
+    <div style="display: inline-block;">
+        <h1 style="background-color: red;"> <a href="{{ path('app') }}">Go to Home</a></h1>
+    </div>
+{% endblock %}

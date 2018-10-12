@@ -1,25 +1,94 @@
+app:
+  path:     /
+  defaults: { _controller: AppBundle:Default:index }
+
+
+
 status_list:
-    path:     /status
-    defaults: { _controller: AppBundle:Status:list }
+  path:     /status
+  defaults: { _controller: AppBundle:Status:list }
 
 status_view:
-    path:     /status/{id}/view
-    defaults: { _controller: AppBundle:Status:view }
-    requirements:
-        page: '\d+'
+  path:     /status/{id}/view
+  defaults: { _controller: AppBundle:Status:view }
+  requirements:
+    page: '\d+'
 
 status_create:
-    path:     /status/create
-    defaults: { _controller: AppBundle:Status:create }
+  path:     /status/create
+  defaults: { _controller: AppBundle:Status:create }
 
 status_update:
-    path:     /status/{id}/update
-    defaults: { _controller: AppBundle:Status:update }
-    requirements:
-        page: '\d+'
+  path:     /status/{id}/update
+  defaults: { _controller: AppBundle:Status:update }
+  requirements:
+    page: '\d+'
 
 status_delete:
-    path:     /status/{id}
-    defaults: { _controller: AppBundle:Status:delete }
-    requirements:
-        page: '\d+'
+  path:     /status/{id}
+  defaults: { _controller: AppBundle:Status:delete }
+  requirements:
+    page: '\d+'
+
+
+
+user_list:
+  path:     /user
+  defaults: { _controller: AppBundle:User:list }
+
+user_view:
+  path:     /user/{id}/view
+  defaults: { _controller: AppBundle:User:view }
+  requirements:
+    page: '\d+'
+
+user_create:
+  path:     /user/create
+  defaults: { _controller: AppBundle:User:create }
+
+user_update:
+  path:     /user/{id}/update
+  defaults: { _controller: AppBundle:User:update }
+  requirements:
+    page: '\d+'
+
+user_delete:
+  path:     /user/{id}
+  defaults: { _controller: AppBundle:User:delete }
+  requirements:
+    page: '\d+'
+
+
+user_error:
+  path:     /user
+  defaults: { _controller: AppBundle:User:error }
+
+task_list:
+  path:     /task
+  defaults: { _controller: AppBundle:Task:list }
+
+task_view:
+  path:     /task/{id}/view
+  defaults: { _controller: AppBundle:Task:view }
+  requirements:
+    page: '\d+'
+
+task_create:
+  path:     /task/create
+  defaults: { _controller: AppBundle:Task:create }
+
+task_update:
+  path:     /task/{id}/update
+  defaults: { _controller: AppBundle:Task:update }
+  requirements:
+    page: '\d+'
+
+task_delete:
+  path:     /task/{id}
+  defaults: { _controller: AppBundle:Task:delete }
+  requirements:
+    page: '\d+'
+
+
+
+
